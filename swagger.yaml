@@ -1,0 +1,477 @@
+openapi: 3.0.0
+
+info:
+
+  title: job api
+
+  contact: {}
+
+  version: '1.0'
+
+servers:
+
+- url: https://islam-h-jobs-api.herokuapp.com/api/v1
+
+  variables: {}
+
+paths:
+
+  /auth/register:
+
+    post:
+
+      tags:
+
+      - Auth
+
+      summary: create user
+
+      operationId: createuser
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              $ref: '#/components/schemas/createuserrequest'
+
+            example:
+
+              name: aaa
+
+              email: aa12asda55a12@gmail.com
+
+              password: secret
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /auth/login:
+
+    post:
+
+      tags:
+
+      - Auth
+
+      summary: login user
+
+      operationId: loginuser
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              $ref: '#/components/schemas/loginuserrequest'
+
+            example:
+
+              name: aaa
+
+              email: aa12asda55a12@gmail.com
+
+              password: secret
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /jobs:
+
+    post:
+
+      tags:
+
+      - Jobs
+
+      summary: create job
+
+      operationId: createjob
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              $ref: '#/components/schemas/createjobrequest'
+
+            example:
+
+              company: google
+
+              position: intern
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    get:
+
+      tags:
+
+      - Jobs
+
+      summary: get all jobs
+
+      operationId: getalljobs
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+
+    get:
+
+      tags:
+
+      - Jobs
+
+      summary: get single job
+
+      operationId: getsinglejob
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    patch:
+
+      tags:
+
+      - Jobs
+
+      summary: update job
+
+      operationId: updatejob
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              $ref: '#/components/schemas/updatejobrequest'
+
+            example:
+
+              company: goog
+
+              position: full-time
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    delete:
+
+      tags:
+
+      - Jobs
+
+      summary: delete job
+
+      operationId: deletejob
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+components:
+
+  schemas:
+
+    createuserrequest:
+
+      title: createuserrequest
+
+      required:
+
+      - name
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        name:
+
+          type: string
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        name: aaa
+
+        email: aa12asda55a12@gmail.com
+
+        password: secret
+
+    loginuserrequest:
+
+      title: loginuserrequest
+
+      required:
+
+      - name
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        name:
+
+          type: string
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        name: aaa
+
+        email: aa12asda55a12@gmail.com
+
+        password: secret
+
+    createjobrequest:
+
+      title: createjobrequest
+
+      required:
+
+      - company
+
+      - position
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+      example:
+
+        company: google
+
+        position: intern
+
+    updatejobrequest:
+
+      title: updatejobrequest
+
+      required:
+
+      - company
+
+      - position
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+      example:
+
+        company: goog
+
+        position: full-time
+
+    deletejobrequest:
+
+      title: deletejobrequest
+
+      required:
+
+      - company
+
+      - position
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+      example:
+
+        company: goog
+
+        position: full-time
+
+  securitySchemes:
+
+    bearer:
+
+      type: http
+
+      scheme: bearer
+
+security: []
+
+tags:
+
+
+
+- name: Auth
+
+  description: ''
+
+- name: Jobs
+
+  description: ''
+

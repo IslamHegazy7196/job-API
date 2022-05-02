@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "ea2f5110-e2ce-45b3-b775-9c905cb28bc2",
+		"name": "job-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"aaa\",\"email\":\"aa12asda55a12@gmail.com\",\"password\":\"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL3}}/auth/register",
+					"host": [
+						"{{URL3}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"pm.globals.set(\"access_token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"aaa\",\"email\":\"aa12asda55a12@gmail.com\",\"password\":\"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL3}}/auth/login",
+					"host": [
+						"{{URL3}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create job",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlYTY2NDhjNGYyMDFjOWM4ZmMyNmYiLCJuYW1lIjoiYWFhIiwiaWF0IjoxNjUxNDIzMjc4LCJleHAiOjE2NTQwMTUyNzh9.mDmfqWksyZSIiZjLpfTeyULyLofznzVOy-Kfb9q12Do",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\":\"google\",\"position\":\"intern\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL3}}/jobs/",
+					"host": [
+						"{{URL3}}"
+					],
+					"path": [
+						"jobs",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all jobs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlYTY2NDhjNGYyMDFjOWM4ZmMyNmYiLCJuYW1lIjoiYWFhIiwiaWF0IjoxNjUxNDIzMjc4LCJleHAiOjE2NTQwMTUyNzh9.mDmfqWksyZSIiZjLpfTeyULyLofznzVOy-Kfb9q12Do",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\":\"google\",\"position\":\"intern\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL3}}/jobs/",
+					"host": [
+						"{{URL3}}"
+					],
+					"path": [
+						"jobs",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get single job",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlYTY2NDhjNGYyMDFjOWM4ZmMyNmYiLCJuYW1lIjoiYWFhIiwiaWF0IjoxNjUxNDIzMjc4LCJleHAiOjE2NTQwMTUyNzh9.mDmfqWksyZSIiZjLpfTeyULyLofznzVOy-Kfb9q12Do",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\":\"google\",\"position\":\"intern\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL3}}/jobs/626ec763795b3110085dca8c",
+					"host": [
+						"{{URL3}}"
+					],
+					"path": [
+						"jobs",
+						"626ec763795b3110085dca8c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update job",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlYTY2NDhjNGYyMDFjOWM4ZmMyNmYiLCJuYW1lIjoiYWFhIiwiaWF0IjoxNjUxNDIzMjc4LCJleHAiOjE2NTQwMTUyNzh9.mDmfqWksyZSIiZjLpfTeyULyLofznzVOy-Kfb9q12Do",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\":\"goog\",\"position\":\"full-time\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL3}}/jobs/626ec763795b3110085dca8c",
+					"host": [
+						"{{URL3}}"
+					],
+					"path": [
+						"jobs",
+						"626ec763795b3110085dca8c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete job",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjZlYTY2NDhjNGYyMDFjOWM4ZmMyNmYiLCJuYW1lIjoiYWFhIiwiaWF0IjoxNjUxNDIzMjc4LCJleHAiOjE2NTQwMTUyNzh9.mDmfqWksyZSIiZjLpfTeyULyLofznzVOy-Kfb9q12Do",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\":\"goog\",\"position\":\"full-time\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL3}}/jobs/626ec763795b3110085dca8c",
+					"host": [
+						"{{URL3}}"
+					],
+					"path": [
+						"jobs",
+						"626ec763795b3110085dca8c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
